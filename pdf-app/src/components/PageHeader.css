@@ -1,20 +1,97 @@
-.page-header {
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.header-inner {
+  max-width: 1152px;
+  margin: 0 auto;
   display: flex;
-  justify-content: space-between; /* pushes logo left, text right */
   align-items: center;
-  padding: 10px 10px 5px 5px; /* horizontal padding */
-  background-color: #f5f5f5; /* optional */
+  justify-content: space-between;
+  padding: 0 16px;
+  height: 68px;
+  gap: 16px;
+}
+
+@media screen and (max-width: 480px) {
+  .header-inner {
+    height: 52px;
+    padding: 0 12px;
+    gap: 8px;
+  }
+
+  .header-title {
+    font-size: clamp(0.55rem, 3vw, 0.75rem);
+    letter-spacing: 0.04em;
+  }
+
+  .theme-toggle {
+    font-size: 0.72rem;
+    padding: 5px 10px;
+  }
+}
+
+.header-logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
 }
 
 .header-logo {
-  margin-top: 15px;
+  height: clamp(32px, 5vw, 44px);
   width: auto;
-  height: clamp(33px, 6vw, 48px); /* scales between 36px and 48px depending on viewport width */
 }
 
+.header-title {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: clamp(0.7rem, 1.8vw, 0.95rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-main);
+  flex: 1;
+  text-align: center;
+}
 
-.header-text {
-  font-weight: bold;
-  font-size: clamp(12px, 3vw, 20px);
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.theme-toggle {
+  font-family: 'Exo 2', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--nav-link-color);
+  background: transparent;
+  border: 1px solid var(--nav-link-border);
+  border-radius: 6px;
+  padding: 7px 14px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+
+.theme-toggle:hover {
+  color: var(--nav-link-hover);
+  border-color: var(--nav-link-hover);
+  box-shadow: 0 0 10px rgba(129, 241, 51, 0.2);
+  background: rgba(129, 241, 51, 0.05);
+}
+
+html.light .theme-toggle:hover {
+  box-shadow: 0 0 10px rgba(88, 43, 126, 0.2);
+  background: rgba(88, 43, 126, 0.05);
 }
 
