@@ -60,7 +60,6 @@ class App extends React.Component {
 
     if (this.state.pageSize !== Fit) {
       pageWrapper.width = Math.ceil(192 * this.getAspectRatio()) + 'px';
-      pageWrapper.boxShadow = "5px 5px 5px rgb(200,200,200)";
     }
 
     const landing = (
@@ -149,7 +148,7 @@ class App extends React.Component {
 
 
 
-    const listView = (<div style={{ display: 'flex', flexWrap: 'wrap', flex: "1", justifyContent: "center" }} >
+    const listView = (<div style={{ display: 'flex', flexWrap: 'wrap', flex: "1", justifyContent: "center", alignContent: "center", alignItems: "center" }} >
       {this.state.images.map((img, index) => (
         <div
           style={{ padding: "5px" }}
