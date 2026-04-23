@@ -35,9 +35,11 @@ class App extends React.Component {
     this.fileInput = React.createRef();
   }
   render() {
+    const thumbH = window.innerWidth < 480 ? 180 : window.innerWidth < 768 ? 220 : 280;
+
     let pageWrapper = {
-      height: "192px",
-      width: "192px",
+      height: thumbH + "px",
+      width: thumbH + "px",
       border: "none",
       display: "flex",
       background: "var(--surface-card)",
@@ -59,7 +61,7 @@ class App extends React.Component {
     }
 
     if (this.state.pageSize !== Fit) {
-      pageWrapper.width = Math.ceil(192 * this.getAspectRatio()) + 'px';
+      pageWrapper.width = Math.ceil(thumbH * this.getAspectRatio()) + 'px';
     }
 
     const landing = (
