@@ -143,8 +143,8 @@ code {
   color: #fff;
   border: none;
   border-radius: 30px;
-  background: linear-gradient(135deg, #81f133 0%, #15ffe0 50%, #c837ab 100%);
-  box-shadow: 0 4px 24px rgba(129, 241, 51, 0.3), 0 0 40px rgba(88, 43, 126, 0.2);
+  background: linear-gradient(135deg, #4a9a0a 0%, #007a6a 50%, #c837ab 100%);
+  box-shadow: 0 4px 24px rgba(88, 43, 126, 0.3), 0 0 40px rgba(88, 43, 126, 0.15);
   outline: none;
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
