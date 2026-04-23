@@ -1,4 +1,4 @@
-import './App.css';
+mport './App.css';
 import React from 'react';
 import { PageSizes, PDFDocument, degrees } from 'pdf-lib'
 import EXIF from 'exif-js';
@@ -40,7 +40,7 @@ class App extends React.Component {
       width: "192px",
       border: "none",
       display: "flex",
-      background: "white",
+      background: "var(--surface-card)",
       position: "relative"
     };
 
@@ -66,7 +66,7 @@ class App extends React.Component {
     const landing = (
       <div className="landing-page">
         <div style={{ padding: "40px", fontSize: "18px", textAlign: "center" }}>
-          Convert JPEG or PNG to PDF — <strong>Safe, Secure, Local.</strong>
+          Convert JPEG or PNG to PDF â€” <strong>Safe, Secure, Local.</strong>
           <br />
           Your files never leave your device.
         </div>
@@ -97,48 +97,24 @@ class App extends React.Component {
 
         <div
           className="dropzone"
-          style={{
-            margin: "25px auto",
-            padding: "60px 20px",
-            width: "80%",
-            maxWidth: "600px",
-            border: "3px dashed #888",
-            borderRadius: "12px",
-            backgroundColor: "#f9f9f9",
-            color: "#555",
-            fontSize: "20px",
-            fontWeight: "500",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexDirection: "column",
-            transition: "0.3s",
-            cursor: "pointer",
-            textAlign: "center"
-          }}
           onDragOver={(e) => {
-            e.preventDefault(); // allow drop
-            e.currentTarget.style.backgroundColor = "#e0f7ff";
-            e.currentTarget.style.borderColor = "#00aaff";
+            e.preventDefault();
+            e.currentTarget.classList.add('drag-over');
           }}
           onDragLeave={(e) => {
-            e.currentTarget.style.backgroundColor = "#f9f9f9";
-            e.currentTarget.style.borderColor = "#888";
+            e.currentTarget.classList.remove('drag-over');
           }}
           onDrop={(e) => {
             e.preventDefault();
             e.stopPropagation();
+            e.currentTarget.classList.remove('drag-over');
             let files = e.dataTransfer.files;
-            this.readfiles(files); // your class method
-            e.currentTarget.style.backgroundColor = "#f9f9f9";
-            e.currentTarget.style.borderColor = "#888";
+            this.readfiles(files);
           }}
-          onClick={() => this.fileInput.current.click()} // click to open file selector
+          onClick={() => this.fileInput.current.click()}
         >
-          <div>Drag & Drop Images Here</div>
-          <small style={{ marginTop: "10px", fontSize: "14px", color: "#999" }}>
-            or click to select files
-          </small>
+          <div>Drag &amp; Drop Images Here</div>
+          <small>or click to select files</small>
         </div>
         <input
           type="file"
@@ -223,25 +199,25 @@ class App extends React.Component {
     </div>);
 
     const pageMarginSection = (<div>
-      <div style={{ paddingBottom: "10px", fontSize: "16px", color: "gray", paddingTop: "20px" }}>Page margin</div>
+      <div style={{ paddingBottom: "10px", fontSize: "16px", color: "var(--text-dim)", paddingTop: "20px" }}>Page margin</div>
       <div style={{ display: "flex" }}>
         <div style={{
           flex: "1", height: "50px", display: "flex", flexDirection: "column",
           justifyContent: "center", textAlign: "center",
-          background: (this.state.pageMargin === None ? "purple" : "rgb(240,240,240)"),
-          color: (this.state.pageMargin === None ? "white" : "black"), padding: "5px"
+          background: (this.state.pageMargin === None ? "var(--accent)" : "var(--option-unselected)"),
+          color: (this.state.pageMargin === None ? "white" : "var(--text-main)"), padding: "5px"
         }} onClick={() => this.setState({ pageMargin: None })}>None</div>
         <div style={{
           flex: "1", height: "50px", display: "flex", flexDirection: "column",
           justifyContent: "center", textAlign: "center",
-          background: (this.state.pageMargin === Small ? "purple" : "rgb(240,240,240)"),
-          color: (this.state.pageMargin === Small ? "white" : "black"), padding: "5px"
+          background: (this.state.pageMargin === Small ? "var(--accent)" : "var(--option-unselected)"),
+          color: (this.state.pageMargin === Small ? "white" : "var(--text-main)"), padding: "5px"
         }} onClick={() => this.setState({ pageMargin: Small })}>Small</div>
         <div style={{
           flex: "1", height: "50px", display: "flex", flexDirection: "column",
           justifyContent: "center", textAlign: "center",
-          background: (this.state.pageMargin === Big ? "purple" : "rgb(240,240,240)"),
-          color: (this.state.pageMargin === Big ? "white" : "black"), padding: "5px"
+          background: (this.state.pageMargin === Big ? "var(--accent)" : "var(--option-unselected)"),
+          color: (this.state.pageMargin === Big ? "white" : "var(--text-main)"), padding: "5px"
         }} onClick={() => this.setState({ pageMargin: Big })}>Big</div>
       </div>
     </div>);
@@ -286,59 +262,59 @@ class App extends React.Component {
           <span>Options</span>
           {closeBtn}
         </div>
-        <div style={{ paddingBottom: "10px", fontSize: "16px", color: "gray", paddingTop: "10px" }}>Page orientation</div>
+        <div style={{ paddingBottom: "10px", fontSize: "16px", color: "var(--text-dim)", paddingTop: "10px" }}>Page orientation</div>
         <div style={{ display: "flex" }}>
           <div style={{
             flex: "1", height: "50px", display: "flex", flexDirection: "column",
             justifyContent: "center", textAlign: "center",
-            background: (this.state.pageOrientation === Portrait ? "purple" : "rgb(240,240,240)"),
-            color: (this.state.pageOrientation === Portrait ? "white" : "black"), padding: "5px"
+            background: (this.state.pageOrientation === Portrait ? "var(--accent)" : "var(--option-unselected)"),
+            color: (this.state.pageOrientation === Portrait ? "white" : "var(--text-main)"), padding: "5px"
           }}
             onClick={() => this.setState({ pageOrientation: Portrait })}>Portrait</div>
           <div style={{
             flex: "1", height: "50px", display: "flex", flexDirection: "column",
             justifyContent: "center", textAlign: "center",
-            background: (this.state.pageOrientation === Landscape ? "purple" : "rgb(240,240,240)"),
-            color: (this.state.pageOrientation === Landscape ? "white" : "black"), padding: "5px"
+            background: (this.state.pageOrientation === Landscape ? "var(--accent)" : "var(--option-unselected)"),
+            color: (this.state.pageOrientation === Landscape ? "white" : "var(--text-main)"), padding: "5px"
           }}
             onClick={() => this.setState({ pageOrientation: Landscape })}>Landscape</div>
         </div>
-        <div style={{ paddingBottom: "10px", fontSize: "16px", color: "gray", paddingTop: "20px" }}>Page size</div>
+        <div style={{ paddingBottom: "10px", fontSize: "16px", color: "var(--text-dim)", paddingTop: "20px" }}>Page size</div>
         <div style={{ display: "flex" }}>
           <div style={{
             flex: "1", height: "50px", display: "flex", flexDirection: "column",
             justifyContent: "center", textAlign: "center",
-            background: (this.state.pageSize === A4 ? "purple" : "rgb(240,240,240)"),
-            color: (this.state.pageSize === A4 ? "white" : "black"), padding: "5px"
+            background: (this.state.pageSize === A4 ? "var(--accent)" : "var(--option-unselected)"),
+            color: (this.state.pageSize === A4 ? "white" : "var(--text-main)"), padding: "5px"
           }} onClick={() => this.setState({ pageSize: A4 })}>A4</div>
           <div style={{
             flex: "1", height: "50px", display: "flex", flexDirection: "column",
             justifyContent: "center", textAlign: "center",
-            background: (this.state.pageSize === Letter ? "purple" : "rgb(240,240,240)"),
-            color: (this.state.pageSize === Letter ? "white" : "black"), padding: "5px"
+            background: (this.state.pageSize === Letter ? "var(--accent)" : "var(--option-unselected)"),
+            color: (this.state.pageSize === Letter ? "white" : "var(--text-main)"), padding: "5px"
           }} onClick={() => this.setState({ pageSize: Letter })}>US Letter</div>
           <div style={{
             flex: "1", height: "50px", display: "flex", flexDirection: "column",
             justifyContent: "center", textAlign: "center",
-            background: (this.state.pageSize === Fit ? "purple" : "rgb(240,240,240)"),
-            color: (this.state.pageSize === Fit ? "white" : "black"), padding: "5px"
+            background: (this.state.pageSize === Fit ? "var(--accent)" : "var(--option-unselected)"),
+            color: (this.state.pageSize === Fit ? "white" : "var(--text-main)"), padding: "5px"
           }} onClick={() => this.setState({ pageSize: Fit })}>Same as Image</div>
         </div>
         {this.state.pageSize !== Fit ? pageMarginSection : (<div></div>)}
-        <div style={{ paddingBottom: "10px", fontSize: "16px", color: "gray", paddingTop: "20px" }}>Compression</div>
+        <div style={{ paddingBottom: "10px", fontSize: "16px", color: "var(--text-dim)", paddingTop: "20px" }}>Compression</div>
         <div style={{ display: "flex" }}>
           <div style={{
             flex: "1", height: "50px", display: "flex", flexDirection: "column",
             justifyContent: "center", textAlign: "center",
-            background: (this.state.compressImages ? "purple" : "rgb(240,240,240)"),
-            color: (this.state.compressImages ? "white" : "black"), padding: "5px"
+            background: (this.state.compressImages ? "var(--accent)" : "var(--option-unselected)"),
+            color: (this.state.compressImages ? "white" : "var(--text-main)"), padding: "5px"
           }}
             onClick={() => this.setState({ compressImages: true })}>Compress Images</div>
           <div style={{
             flex: "1", height: "50px", display: "flex", flexDirection: "column",
             justifyContent: "center", textAlign: "center",
-            background: (!this.state.compressImages ? "purple" : "rgb(240,240,240)"),
-            color: (!this.state.compressImages ? "white" : "black"), padding: "5px"
+            background: (!this.state.compressImages ? "var(--accent)" : "var(--option-unselected)"),
+            color: (!this.state.compressImages ? "white" : "var(--text-main)"), padding: "5px"
           }}
             onClick={() => this.setState({ compressImages: false })}>Don't Compress</div>
         </div>
@@ -381,7 +357,7 @@ class App extends React.Component {
       <div style={{ display: "flex", flexDirection: "column", width: "100%", height: "100%", overflow: "hidden", flex: "1" }}>
 
         <div style={{ display: "flex", overflow: "hidden", flex: "1" }}>
-          <div style={{ display: "flex", flexDirection: "column", width: "100%", flex: "1", overflow: "auto", background: "rgb(240,240,240)" }} onClick={this.clearSelection}>
+          <div style={{ display: "flex", flexDirection: "column", width: "100%", flex: "1", overflow: "auto", background: "var(--bg-mid)" }} onClick={this.clearSelection}>
             {listView}
             <div style={{ flex: "1" }}></div>
           </div>
