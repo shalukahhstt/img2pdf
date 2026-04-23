@@ -1,4 +1,4 @@
-mport './App.css';
+import './App.css';
 import React from 'react';
 import { PageSizes, PDFDocument, degrees } from 'pdf-lib'
 import EXIF from 'exif-js';
