@@ -66,7 +66,7 @@ class App extends React.Component {
     const landing = (
       <div className="landing-page">
         <div style={{ padding: "40px", fontSize: "18px", textAlign: "center" }}>
-          Convert JPEG or PNG to PDF â€” <strong>Safe, Secure, Local.</strong>
+          Convert JPEG or PNG to PDF — <strong>Safe, Secure, Local.</strong>
           <br />
           Your files never leave your device.
         </div>
@@ -341,7 +341,7 @@ class App extends React.Component {
 
 
     if (this.state.images.length < 1) {
-      return <div>
+      return <div style={{ flex: "1", display: "flex", flexDirection: "column" }}>
 
         <input type="file" ref={this.fileInput} onChange={() => this.readfiles(this.fileInput.current.files)} multiple style={{ display: "none" }}></input>
         {landing}
