@@ -80,13 +80,15 @@ html {
 body {
   margin: 0;
   padding: 0;
+  min-height: 100%;
   height: 100%;
   font-family: 'Exo 2', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   background: var(--bg-gradient);
   background-attachment: fixed;
   color: var(--text-main);
@@ -101,7 +103,7 @@ code {
 #root {
   margin: 0;
   padding: 0;
-  height: 100%;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -126,7 +128,7 @@ code {
   text-align: center;
   max-width: 480px;
   line-height: 1.6;
-  padding: 20px 40px;
+  padding: 20px 24px;
 }
 
 .landing-page > div:first-child strong {
@@ -278,7 +280,28 @@ html.light .busy {
     display: inline;
   }
 
+  .landing-page > div:first-child {
+    font-size: 15px;
+    padding: 16px 20px;
+  }
+
   .dropzone {
-    display: none;
+    width: calc(100% - 40px);
+    padding: 40px 16px;
+    font-size: 16px;
+    margin: 20px auto;
+    box-sizing: border-box;
+  }
+
+  .big-btn {
+    font-size: 15px;
+    padding: 13px 28px;
+  }
+
+  .actions-wrapper {
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+    padding: 8px 12px;
   }
 }
